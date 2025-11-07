@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    display: block;
+    width: 280px;
+    margin: 14px auto 0;
+    padding: 15px;
+    background: #2b2b2b;
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: 0.3s;
+    border: 1px solid #444;
+}
+
+.btn:hover {
+    background: #444;
+    transform: scale(1.05);
+}
+
+/* Imagenes uniformes y efecto hover */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 36px; /* más separación entre tarjetas (y por tanto entre botones) */
+    justify-content: center;
+}
+
+.card img.swap {
+    width: 100%; /* ocupar el contenedor (.img-wrap) */
+    height: 100%;
+    object-fit: cover; /* mantiene proporción recortando si hace falta */
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    cursor: pointer;
+}
+
+.card img.swap:hover {
+    transform: scale(1.03);
+}
+
+/* Responsive: que las imágenes nunca excedan el contenedor en pantallas pequeñas */
+@media (max-width: 480px) {
+    .card img.swap {
+        width: 100%;
+        height: 160px;
+    }
+    .btn { width: 90%; }
+}
+
+/* --- CSS-only image swap: superponer front/back y cambiar opacidad en hover --- */
+.card { width: 420px; }
+.img-wrap {
+    position: relative;
+    width: 420px;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.img-wrap img {
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 220ms ease, transform 220ms ease;
+    display: block;
+}
+.img-wrap img.back { opacity: 0; }
+.img-wrap:hover img.back { opacity: 1; }
+.img-wrap:hover img.front { opacity: 0; }
+
+/* Accesibilidad: también activar swap cuando el enlace tiene foco (teclado) */
+.card a:focus .img-wrap img.back,
+.card a:focus-within .img-wrap img.back { opacity: 1; }
+.card a:focus .img-wrap img.front,
+.card a:focus-within .img-wrap img.front { opacity: 0; }
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .card, .img-wrap { width: 90%; height: 200px; }
+}
+
+/* Ajustar el ancho del botón para coincidir con la card */
+.card .btn {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* Simple button entrance animation (sin JS) */
+.btn {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: btnIn 400ms ease forwards;
+    animation-delay: 150ms;
+}
+@keyframes btnIn {
+    to { opacity: 1; transform: translateY(0); }
+}
