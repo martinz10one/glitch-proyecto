@@ -4,6 +4,20 @@ body {
     color: white;
     text-align: center;
     padding: 50px;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .container {
