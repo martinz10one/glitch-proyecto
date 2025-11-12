@@ -113,7 +113,7 @@ a {
 .container {
     display: flex;
     flex-wrap: wrap;
-    gap: 36px; /* más separación entre tarjetas (y por tanto entre botones) */
+    gap: 48px; /* más separación entre tarjetas (y por tanto entre botones) */
     justify-content: center;
 }
 
@@ -176,7 +176,7 @@ a {
 /* Ajustar el ancho del botón para coincidir con la card */
 .card .btn {
     width: 100%;
-    max-width: 420px;
+    max-width: 220px
 }
 
 /* Simple button entrance animation (sin JS) */
@@ -188,4 +188,38 @@ a {
 }
 @keyframes btnIn {
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Ajustes específicos para pantallas muy pequeñas (<= 300px) --- */
+@media (max-width: 480px) {
+    .container {
+        flex-direction: column; /* apilar verticalmente */
+        align-items: center;    /* centrar las tarjetas */
+        overflow-x: visible;
+        gap: 18px;
+        padding-left: 6px;
+        padding-right: 6px;
+        scroll-snap-type: none;
+    }
+
+    .card {
+        width: 100%;       /* ocupar el ancho disponible */
+        max-width: 300px;  /* no exceder 300px */
+        flex: 0 0 auto;
+        scroll-snap-align: none;
+    }
+
+    .img-wrap {
+        width: 100%;
+        height: 100px; /* altura razonable en móviles pequeños */
+    }
+
+    .card .btn {
+        width: 100%; /* mismo ancho que la tarjeta */
+        max-width: none;
+        margin: 8px 0 0;
+        box-sizing: border-box;
+    }
+
+    .hero-title { font-size: 1.6rem; line-height: 1.05; }
 }
