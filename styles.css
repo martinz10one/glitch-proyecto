@@ -20,6 +20,69 @@ body {
     pointer-events: none;
 }
 
+/* =====================
+   Estilos para el título
+   ===================== */
+.hero-title {
+    font-family: 'Poppins', 'Segoe UI', Roboto, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 6vw, 4rem);
+    margin: 12px 0 6px;
+    background: linear-gradient(90deg, #ff7a18, #af002d, #8763ff, #00d4ff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 6px 24px rgba(0,0,0,0.55);
+    letter-spacing: 0.6px;
+    display: inline-block;
+    animation: gradientShift 6s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.hero-title .emoji {
+    display: inline-block;
+    margin-right: 8px;
+    transform-origin: center;
+    animation: floatEmoji 4s ease-in-out infinite;
+    filter: drop-shadow(0 6px 18px rgba(255,122,24,0.09));
+}
+
+@keyframes floatEmoji {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px) rotate(-6deg); }
+}
+
+.hero-title::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 60%;
+    margin: 8px auto 0;
+    background: linear-gradient(90deg,#ff7a18,#8763ff,#00d4ff);
+    border-radius: 4px;
+    opacity: 0.95;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: underlineGrow 900ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+@keyframes underlineGrow {
+    to { transform: scaleX(1); }
+}
+
+.subtitle {
+    margin: 0 0 18px;
+    color: #dcdcdc;
+    opacity: 0.95;
+    font-size: 1.05rem;
+}
+
+
 .container {
     margin-top: 30px;
 }
